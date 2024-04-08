@@ -6,7 +6,7 @@ A library for sending and receiving Unix file descriptors over async UnixStream 
 [![MIT licensed][mit-badge]][mit-url]
 [![Build Status][actions-badge]][actions-url]
 
-[crates-badge]: https://img.shields.io/crates/v/tokio-send-fd.svg
+[crates-badge]: https://img.shields.io/crates/v/async-send-fd.svg
 [crates-url]: https://crates.io/crates/async-send-fd
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [mit-url]: https://github.com/alexander-smoktal/async-send-fd/blob/main/LICENSE
