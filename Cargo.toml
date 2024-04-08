@@ -1,20 +1,27 @@
 [package]
-name = "tokio-send-fd"
-version = "0.9.4"
+name = "async-send-fd"
+version = "0.9.9"
 edition = "2021"
 authors = ["Alexander Smoktal [https://github.com/alexander-smoktal]"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/alexander-smoktal/tokio-send-fd"
+repository = "https://github.com/alexander-smoktal/async-send-fd"
 description = """
-A wrapper for tokio::net::UnixStream to send file descriptors
+A wrapper for async UnixStream's to send file descriptors
 """
 categories = ["asynchronous", "network-programming"]
 
+[features]
+default = []
+tokio = ["dep:tokio"]
+smol = ["dep:smol"]
+
 [dependencies]
-async-trait = "0.1.56"
-passfd = "0.1.4"
-tokio = { version = "1.19", features = ["net", "rt", "macros", "io-util"] }
+passfd = "0.1"
+tokio = { version = "1", features = ["net", "io-util"], optional = true }
+smol = { version = "2", optional = true }
 
 [dev-dependencies]
-tempdir = "0.3.7"
+tempdir = "0.3"
+tokio = { version = "1", features = ["net", "rt", "macros", "io-util"] }
+async-send-fd = { path = ".", features = ["tokio", "smol"] }

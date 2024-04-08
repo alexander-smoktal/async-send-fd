@@ -6,7 +6,7 @@ use tokio::{
     net::{UnixListener, UnixStream},
 };
 
-use tokio_send_fd::SendFd;
+use async_send_fd::{AsyncRecvFd, AsyncSendFd};
 
 const SOCKET_NAME: &str = "tokio_send_fd_test.sock";
 
