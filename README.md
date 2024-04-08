@@ -17,7 +17,7 @@ A library for sending and receiving Unix file descriptors over async UnixStream 
 The crate is a library for sending and receiving Unix file descriptors over [Tokio](https://crates.io/crates/tokio) or [Smol](https://crates.io/crates/smol) UnixStream connections.
 You can send **RawFd** or **UnixStream** using provided interfaces.
 
-See [test_raw_fd.rs](./tests/test_raw_fd.rs), [test_smol_stream.rs](./tests/test_smol_stream.rs), or [test_tokio_stream.rs](./tests/test_tokio_stream.rs) for examples.
+See [test_smol_stream.rs](./tests/test_smol_stream.rs) or [test_tokio_stream.rs](./tests/test_tokio_stream.rs) for code examples.
 
 ## Creating **tokio::net::UnixStream** from **RawFd**
 If you make a Tokio [UnixStream](https://docs.rs/tokio/latest/tokio/net/struct.UnixStream.html) from a raw file descriptor made by an OS call (e.g. [UnixStream::pair](https://doc.rust-lang.org/std/os/unix/net/struct.UnixStream.html)), you must make it [set_nonblocking(true)](https://doc.rust-lang.org/stable/std/os/unix/net/struct.UnixStream.html#method.set_nonblocking), otherwise receivers scheduler will block writing into the socket ⚠️

@@ -5,9 +5,8 @@
 //! - or Smol [UnixStream](smol::net::unix::UnixStream) if `smol` feature enabled;
 //!
 //! ## Examles
-//! See [test_raw_fd.rs](https://github.com/alexander-smoktal/async-send-fd/blob/main/tests/test_raw_fd.rs),
-//! [test_smol_stream.rs](https://github.com/alexander-smoktal/async-send-fd/blob/main/tests/test_smol_stream.rs) or
-//! [test_tokio_stream.rs](https://github.com/alexander-smoktal/async-send-fd/blob/main/tests/test_tokio_stream.rs) for examples.
+//! See [test_smol_stream.rs](https://github.com/alexander-smoktal/async-send-fd/blob/main/tests/test_smol_stream.rs) or
+//! [test_tokio_stream.rs](https://github.com/alexander-smoktal/async-send-fd/blob/main/tests/test_tokio_stream.rs) for code examples.
 //!
 //! ## Creating a Tokio [UnixStream](tokio::net::UnixStream) from [RawFd]
 //! If you make a Tokio [UnixStream](tokio::net::UnixStream) from a raw file descriptor made by an
