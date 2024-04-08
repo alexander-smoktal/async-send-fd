@@ -1,6 +1,6 @@
 [package]
 name = "async-send-fd"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = ["Alexander Smoktal [https://github.com/alexander-smoktal]"]
 license = "MIT"
@@ -26,6 +26,5 @@ tempdir = "0.3"
 tokio = { version = "1", features = ["net", "rt", "macros", "io-util"] }
 async-send-fd = { path = ".", features = ["tokio", "smol"] }
 
-[doc-dependencies]
-tokio = { version = "1", features = ["net", "io-util"] }
-smol = { version = "2" }
+[package.metadata.docs.rs]
+all-features = true
