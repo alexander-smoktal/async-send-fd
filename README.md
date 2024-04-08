@@ -1,5 +1,7 @@
 # tokio-send-fd
 
+⚠️This crate is deprecated. Use [async-send-fd](https://crates.io/crates/async-send-fd) instead.
+
 A library to send tokio UnixStream and raw file descriptors over tokio UnixStream connections.
 
 [![Crates.io][crates-badge]][crates-url]

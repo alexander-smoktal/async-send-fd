@@ -1,6 +1,6 @@
 [package]
 name = "tokio-send-fd"
-version = "0.9.3"
+version = "0.9.4"
 edition = "2021"
 authors = ["Alexander Smoktal [https://github.com/alexander-smoktal]"]
 license = "MIT"
