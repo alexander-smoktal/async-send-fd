@@ -1,6 +1,6 @@
 [package]
 name = "async-send-fd"
-version = "0.9.9"
+version = "1.0.0"
 edition = "2021"
 authors = ["Alexander Smoktal [https://github.com/alexander-smoktal]"]
 license = "MIT"
