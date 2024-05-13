@@ -7,7 +7,13 @@ use std::{
     },
 };
 
-use tokio::{io::Interest, net::UnixStream};
+use tokio::{
+    io::Interest,
+    net::{
+        unix::{OwnedReadHalf, OwnedWriteHalf, ReadHalf, WriteHalf},
+        UnixStream,
+    },
+};
 
 use passfd::FdPassingExt;
 
@@ -70,5 +76,53 @@ impl AsyncRecvTokioStream for UnixStream {
 
         let os_stream = unsafe { OsUnixStream::from_raw_fd(fd) };
         UnixStream::from_std(os_stream)
+    }
+}
+
+impl AsyncRecvFd for ReadHalf<'_> {
+    async fn recv_fd(&self) -> Result<RawFd, Error> {
+        self.as_ref().recv_fd().await
+    }
+}
+
+impl AsyncRecvTokioStream for ReadHalf<'_> {
+    async fn recv_stream(&self) -> Result<UnixStream, Error> {
+        self.as_ref().recv_stream().await
+    }
+}
+
+impl AsyncSendFd for WriteHalf<'_> {
+    async fn send_fd(&self, fd: RawFd) -> Result<(), Error> {
+        self.as_ref().send_fd(fd).await
+    }
+}
+
+impl AsyncSendTokioStream for WriteHalf<'_> {
+    async fn send_stream(&self, stream: UnixStream) -> Result<(), Error> {
+        self.as_ref().send_stream(stream).await
+    }
+}
+
+impl AsyncRecvFd for OwnedReadHalf {
+    async fn recv_fd(&self) -> Result<RawFd, Error> {
+        self.as_ref().recv_fd().await
+    }
+}
+
+impl AsyncRecvTokioStream for OwnedReadHalf {
+    async fn recv_stream(&self) -> Result<UnixStream, Error> {
+        self.as_ref().recv_stream().await
+    }
+}
+
+impl AsyncSendFd for OwnedWriteHalf {
+    async fn send_fd(&self, fd: RawFd) -> Result<(), Error> {
+        self.as_ref().send_fd(fd).await
+    }
+}
+
+impl AsyncSendTokioStream for OwnedWriteHalf {
+    async fn send_stream(&self, stream: UnixStream) -> Result<(), Error> {
+        self.as_ref().send_stream(stream).await
     }
 }

@@ -21,7 +21,7 @@
 //! opened by the sender until it shuts down.
 //! If you want socket pair receivers to detect peer shutdown, you have to close local sockets after sending them.
 //!
-//! Use [close](https://docs.rs/nix/latest/nix/unistd/fn.close.html) Posix call for Tokio streams, or [UnixStream::shutdown()](smol::net::unix::UnixStream::shutdown) for Smol.
+//! Use [UnixStream::poll_shutdown()](https://docs.rs/tokio/latest/tokio/net/struct.UnixStream.html#method.poll_shutdown) for Tokio streams, or [UnixStream::shutdown()](smol::net::unix::UnixStream::shutdown) for Smol.
 //!
 //! ## Features
 //! - `tokio` - for Tokio support
