@@ -5,6 +5,7 @@ use std::{
         net::UnixStream as OsUnixStream,
         prelude::{FromRawFd, IntoRawFd},
     },
+    process,
 };
 
 use tokio::{
@@ -55,6 +56,16 @@ impl AsyncSendFd for UnixStream {
             match self.try_io(Interest::WRITABLE, || self.as_raw_fd().send_fd(fd)) {
                 Err(ref e) if e.kind() == ErrorKind::WouldBlock => {
                     continue;
+                }
+                Ok(_) => {
+                    // Try to close the FD if sent into another process
+                    if let Some(pid) = self.peer_cred().ok().and_then(|creds| creds.pid()) {
+                        if pid as u32 != process::id() {
+                            nix::unistd::close(fd)?;
+                        }
+                    }
+
+                    return Ok(());
                 }
                 r => return r,
             }

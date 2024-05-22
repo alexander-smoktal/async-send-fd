@@ -25,9 +25,7 @@ If you make a Tokio [UnixStream](https://docs.rs/tokio/latest/tokio/net/struct.U
 Smol [UnixStream](https://docs.rs/smol/2.0.0/smol/net/unix/struct.UnixStream.html) does it automatically if created using `UnixStream::from(Async::new(stream))`
 
 ## Transfering socket pair ownership
-Sending a descriptor doesn't close the local copy, which leads to having the socket being opened by the sender until it shuts down.
-If you want socket pair receivers to detect peer shutdown, you have to close local sockets after sending them.
-Use [UnixStream::poll_shutdown()](https://docs.rs/tokio/latest/tokio/net/struct.UnixStream.html#method.poll_shutdown) for Tokio streams, or [UnixStream::shutdown()](https://docs.rs/smol/2.0.0/smol/net/unix/struct.UnixStream.html#method.shutdown) for Smol.
+Note: the library closes Tokio stream if sent into another process.
 
 ## Features
 - `tokio` - for Tokio support

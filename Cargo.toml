@@ -1,6 +1,6 @@
 [package]
 name = "async-send-fd"
-version = "1.1.0"
+version = "1.2.0"
 edition = "2021"
 authors = ["Alexander Smoktal [https://github.com/alexander-smoktal]"]
 license = "MIT"
@@ -20,6 +20,7 @@ smol = ["dep:smol"]
 passfd = "0.1"
 tokio = { version = "1", features = ["net", "io-util"], optional = true }
 smol = { version = "2", optional = true }
+nix = "0.28"
 
 [dev-dependencies]
 tempdir = "0.3"
